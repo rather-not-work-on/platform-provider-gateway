@@ -1,0 +1,23 @@
+{
+  "generated_at_utc": "2026-02-28T06:13:09.214890+00:00",
+  "run_id": "smoke-20260228T061309Z",
+  "scenario": "contract_violation",
+  "verdict": "fail",
+  "reason_code": "contract_violation",
+  "attempts": [
+    {
+      "latency_ms": 10,
+      "status": "failed",
+      "error_code": "malformed_invocation"
+    }
+  ],
+  "missing_fields": [
+    {
+      "attempt_index": 0,
+      "missing_fields": [
+        "provider",
+        "model"
+      ]
+    }
+  ]
+}

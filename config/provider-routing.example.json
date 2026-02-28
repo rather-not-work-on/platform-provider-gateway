@@ -1,0 +1,11 @@
+{
+  "routing": {
+    "primary": {"provider": "local-openai", "model": "gpt-4.1-mini"},
+    "fallbacks": [
+      {"provider": "local-anthropic", "model": "claude-3-5-haiku"},
+      {"provider": "local-gemini", "model": "gemini-2.0-flash"}
+    ],
+    "max_retries": 2,
+    "timeout_ms": 45000
+  }
+}

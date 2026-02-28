@@ -1,0 +1,16 @@
+{
+  "generated_at_utc": "2026-02-28T06:13:09.151181+00:00",
+  "run_id": "smoke-20260228T061309Z",
+  "scenario": "primary_success",
+  "verdict": "pass",
+  "reason_code": "ok",
+  "attempts": [
+    {
+      "provider": "local-openai",
+      "model": "gpt-4.1-mini",
+      "latency_ms": 220,
+      "status": "success"
+    }
+  ],
+  "missing_fields": []
+}

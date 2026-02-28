@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "provider-gateway-c4-artifact",
+  "title": "Provider Invocation Artifact",
+  "type": "object",
+  "required": [
+    "run_id",
+    "scenario",
+    "verdict",
+    "attempts"
+  ],
+  "properties": {
+    "run_id": {"type": "string"},
+    "scenario": {"type": "string"},
+    "verdict": {"type": "string", "enum": ["pass", "fail"]},
+    "reason_code": {"type": "string"},
+    "attempts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["provider", "model", "latency_ms", "status"],
+        "properties": {
+          "provider": {"type": "string"},
+          "model": {"type": "string"},
+          "latency_ms": {"type": "integer"},
+          "status": {"type": "string", "enum": ["success", "failed"]},
+          "error_code": {"type": "string"}
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}
