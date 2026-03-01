@@ -1,0 +1,23 @@
+{
+  "generated_at_utc": "2026-03-01T06:02:43.229917+00:00",
+  "run_id": "federated-ci-local-20260301-contract",
+  "scenario": "contract_violation",
+  "verdict": "fail",
+  "reason_code": "contract_violation",
+  "attempts": [
+    {
+      "latency_ms": 10,
+      "status": "failed",
+      "error_code": "malformed_invocation"
+    }
+  ],
+  "missing_fields": [
+    {
+      "attempt_index": 0,
+      "missing_fields": [
+        "provider",
+        "model"
+      ]
+    }
+  ]
+}

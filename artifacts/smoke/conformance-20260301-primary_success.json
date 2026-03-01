@@ -1,0 +1,16 @@
+{
+  "generated_at_utc": "2026-03-01T05:48:27.372172+00:00",
+  "run_id": "conformance-20260301",
+  "scenario": "primary_success",
+  "verdict": "pass",
+  "reason_code": "ok",
+  "attempts": [
+    {
+      "provider": "local-openai",
+      "model": "gpt-4.1-mini",
+      "latency_ms": 220,
+      "status": "success"
+    }
+  ],
+  "missing_fields": []
+}

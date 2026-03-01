@@ -1,0 +1,8 @@
+{
+  "source_repo": "rather-not-work-on/platform-contracts",
+  "contract_bundle_version": "2026.02.28",
+  "pinned_contracts": [
+    "c4-provider-invocation"
+  ],
+  "consumer_repo": "rather-not-work-on/platform-provider-gateway"
+}
