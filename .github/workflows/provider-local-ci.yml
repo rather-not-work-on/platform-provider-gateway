@@ -1,0 +1,53 @@
+name: Provider Gateway Local CI
+
+on:
+  pull_request:
+    paths:
+      - "config/**"
+      - "contracts/**"
+      - "scripts/**"
+      - "README.md"
+      - ".github/workflows/provider-local-ci.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "config/**"
+      - "contracts/**"
+      - "scripts/**"
+      - "README.md"
+      - ".github/workflows/provider-local-ci.yml"
+  workflow_dispatch:
+
+jobs:
+  provider-local-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run provider smoke scenarios
+        run: |
+          mkdir -p /tmp/provider/smoke
+          python3 scripts/litellm_gateway_smoke.py \
+            --scenario primary_success \
+            --run-id "ci-${{ github.run_id }}-provider" \
+            --output-dir /tmp/provider/smoke
+          python3 scripts/litellm_gateway_smoke.py \
+            --scenario primary_fail_fallback_success \
+            --run-id "ci-${{ github.run_id }}-provider" \
+            --output-dir /tmp/provider/smoke
+
+      - name: Validate contract pin
+        run: |
+          mkdir -p /tmp/provider
+          python3 scripts/validate_contract_pin.py \
+            --output /tmp/provider/contract-pin-report.json
+
+      - name: Seeded failure guard (contract violation + invalid pin)
+        run: bash scripts/test_provider_guardrails.sh
