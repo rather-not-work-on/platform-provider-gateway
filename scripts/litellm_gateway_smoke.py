@@ -92,6 +92,11 @@ def main():
         "--run-id",
         default=None,
     )
+    parser.add_argument(
+        "--output-dir",
+        default="artifacts/smoke",
+        help="directory where smoke report is written",
+    )
     args = parser.parse_args()
 
     cfg = load_json(Path(args.config))
@@ -124,7 +129,7 @@ def main():
         "missing_fields": missing_fields,
     }
 
-    out = Path(f"artifacts/smoke/{run_id}-{args.scenario}.json")
+    out = Path(args.output_dir) / f"{run_id}-{args.scenario}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(report, ensure_ascii=True, indent=2), encoding="utf-8")
 
