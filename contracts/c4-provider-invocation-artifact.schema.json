@@ -4,30 +4,99 @@
   "title": "Provider Invocation Artifact",
   "type": "object",
   "required": [
+    "generated_at_utc",
     "run_id",
+    "routing_profile",
     "scenario",
     "verdict",
+    "reason_code",
+    "reason_taxonomy_version",
+    "summary",
     "attempts"
   ],
   "properties": {
-    "run_id": {"type": "string"},
-    "scenario": {"type": "string"},
+    "generated_at_utc": {"type": "string", "format": "date-time"},
+    "run_id": {"type": "string", "minLength": 1},
+    "routing_profile": {"type": "string", "minLength": 1},
+    "scenario": {
+      "type": "string",
+      "enum": ["primary_success", "primary_fail_fallback_success", "contract_violation"]
+    },
     "verdict": {"type": "string", "enum": ["pass", "fail"]},
-    "reason_code": {"type": "string"},
-    "attempts": {
+    "reason_code": {
+      "type": "string",
+      "enum": ["ok", "fallback_recovered", "contract_violation", "all_providers_failed"]
+    },
+    "reason_taxonomy_version": {"type": "integer", "minimum": 1},
+    "missing_fields": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["provider", "model", "latency_ms", "status"],
+        "required": ["attempt_index", "missing_fields"],
         "properties": {
-          "provider": {"type": "string"},
-          "model": {"type": "string"},
+          "attempt_index": {"type": "integer", "minimum": 0},
+          "missing_fields": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1}
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "attempt_count",
+        "success_count",
+        "failure_count",
+        "total_latency_ms",
+        "total_estimated_cost_usd",
+        "fallback_used",
+        "selected_provider"
+      ],
+      "properties": {
+        "attempt_count": {"type": "integer", "minimum": 1},
+        "success_count": {"type": "integer", "minimum": 0},
+        "failure_count": {"type": "integer", "minimum": 0},
+        "total_latency_ms": {"type": "integer", "minimum": 0},
+        "total_estimated_cost_usd": {"type": "number", "minimum": 0},
+        "fallback_used": {"type": "boolean"},
+        "selected_provider": {"type": ["string", "null"]}
+      },
+      "additionalProperties": false
+    },
+    "attempts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "attempt_index",
+          "route_role",
+          "latency_ms",
+          "status",
+          "validation_status",
+          "missing_fields",
+          "estimated_cost_usd"
+        ],
+        "properties": {
+          "attempt_index": {"type": "integer", "minimum": 0},
+          "route_role": {"type": "string", "enum": ["primary", "fallback"]},
+          "provider": {"type": ["string", "null"]},
+          "model": {"type": ["string", "null"]},
           "latency_ms": {"type": "integer"},
           "status": {"type": "string", "enum": ["success", "failed"]},
+          "validation_status": {"type": "string", "enum": ["valid", "invalid"]},
+          "missing_fields": {
+            "type": "array",
+            "items": {"type": "string", "minLength": 1}
+          },
+          "estimated_cost_usd": {"type": "number", "minimum": 0},
           "error_code": {"type": "string"}
-        }
+        },
+        "additionalProperties": false
       }
     }
   },
-  "additionalProperties": true
+  "additionalProperties": false
 }

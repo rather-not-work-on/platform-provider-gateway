@@ -5,8 +5,11 @@ on:
     paths:
       - "config/**"
       - "contracts/**"
+      - "docs/**"
       - "scripts/**"
       - "README.md"
+      - "requirements-dev.txt"
+      - ".gitignore"
       - ".github/workflows/provider-local-ci.yml"
   push:
     branches:
@@ -14,8 +17,11 @@ on:
     paths:
       - "config/**"
       - "contracts/**"
+      - "docs/**"
       - "scripts/**"
       - "README.md"
+      - "requirements-dev.txt"
+      - ".gitignore"
       - ".github/workflows/provider-local-ci.yml"
   workflow_dispatch:
 
@@ -31,6 +37,9 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Install dependencies
+        run: python3 -m pip install --upgrade pip && python3 -m pip install -r requirements-dev.txt
+
       - name: Run provider smoke scenarios
         run: |
           mkdir -p /tmp/provider/smoke
@@ -42,6 +51,12 @@ jobs:
             --scenario primary_fail_fallback_success \
             --run-id "ci-${{ github.run_id }}-provider" \
             --output-dir /tmp/provider/smoke
+          python3 scripts/validate_provider_smoke_evidence.py \
+            --report "/tmp/provider/smoke/ci-${{ github.run_id }}-provider-primary_success.json" \
+            --output /tmp/provider/provider-primary-success-validation.json
+          python3 scripts/validate_provider_smoke_evidence.py \
+            --report "/tmp/provider/smoke/ci-${{ github.run_id }}-provider-primary_fail_fallback_success.json" \
+            --output /tmp/provider/provider-fallback-validation.json
 
       - name: Validate contract pin
         run: |
