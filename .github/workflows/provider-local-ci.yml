@@ -2,27 +2,9 @@ name: Provider Gateway Local CI
 
 on:
   pull_request:
-    paths:
-      - "config/**"
-      - "contracts/**"
-      - "docs/**"
-      - "scripts/**"
-      - "README.md"
-      - "requirements-dev.txt"
-      - ".gitignore"
-      - ".github/workflows/provider-local-ci.yml"
   push:
     branches:
       - main
-    paths:
-      - "config/**"
-      - "contracts/**"
-      - "docs/**"
-      - "scripts/**"
-      - "README.md"
-      - "requirements-dev.txt"
-      - ".gitignore"
-      - ".github/workflows/provider-local-ci.yml"
   workflow_dispatch:
 
 jobs:
