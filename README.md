@@ -6,18 +6,22 @@ Local-first provider gateway baseline for UAP runtime.
 - LiteLLM-style routing policy skeleton
 - primary/fallback invocation flow
 - C4 invocation artifact contract smoke checks
+- repo-owned smoke evidence schema and reason taxonomy
 
 ## Layout
 - `contracts/`: invocation artifact schema
 - `config/`: routing policy examples
 - `scripts/`: smoke validation scripts and local launcher
-- `artifacts/`: smoke execution reports
+- `docs/runbook/`: operational smoke/runbook guidance
+- `runtime-artifacts/`: default local smoke execution reports (gitignored)
 
 ## Smoke Test
 ```bash
+python3 -m pip install -r requirements-dev.txt
 python3 scripts/litellm_gateway_smoke.py --scenario primary_success
 python3 scripts/litellm_gateway_smoke.py --scenario primary_fail_fallback_success
 python3 scripts/litellm_gateway_smoke.py --scenario contract_violation
+python3 scripts/validate_provider_smoke_evidence.py --report runtime-artifacts/smoke/<run_id>-primary_success.json
 python3 scripts/validate_contract_pin.py
 bash scripts/test_provider_guardrails.sh
 ```
@@ -39,13 +43,15 @@ bash scripts/litellm_stack_launcher.sh \
 ```
 
 Artifacts:
-- `artifacts/launcher/<run_id>.json` (profile drill result)
-- `artifacts/smoke/*.json` (gateway scenario smoke outputs)
+- `runtime-artifacts/launcher/<run_id>.json` (profile drill result)
+- `runtime-artifacts/smoke/*.json` (gateway scenario smoke outputs)
+- runbook: `docs/runbook/provider-smoke-evidence-runbook.md`
 
 ## Local CI Baseline
 - workflow: `.github/workflows/provider-local-ci.yml`
 - checks:
   - provider smoke (`primary_success`, `primary_fail_fallback_success`)
+  - smoke evidence schema validation (`scripts/validate_provider_smoke_evidence.py`)
   - contract pin validation (`scripts/validate_contract_pin.py`)
   - seeded failure guard (`scripts/test_provider_guardrails.sh`)
 

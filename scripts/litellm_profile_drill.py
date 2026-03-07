@@ -86,7 +86,7 @@ def main():
         "verdict": "pass" if not failed else "fail",
     }
 
-    out = Path(f"artifacts/launcher/{args.run_id}.json")
+    out = Path(f"runtime-artifacts/launcher/{args.run_id}.json")
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(report, ensure_ascii=True, indent=2), encoding="utf-8")
 

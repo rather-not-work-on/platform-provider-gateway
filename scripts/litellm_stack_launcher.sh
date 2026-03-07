@@ -31,7 +31,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-mkdir -p artifacts/launcher
+mkdir -p runtime-artifacts/launcher
 
 if [[ "$MODE" == "dry-run" ]]; then
   echo "[launcher] dry-run mode: validating runtime profiles only"

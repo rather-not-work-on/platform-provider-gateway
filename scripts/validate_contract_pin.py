@@ -86,7 +86,7 @@ def validate_pin(pin: dict, required_contracts):
 def main():
     parser = argparse.ArgumentParser(description="Validate provider-gateway contract pin policy")
     parser.add_argument("--pin", default="config/contract-pin.json")
-    parser.add_argument("--output", default="artifacts/smoke/contract-pin-report.json")
+    parser.add_argument("--output", default="runtime-artifacts/validation/contract-pin-report.json")
     parser.add_argument("--required-contracts", default="c4-provider-invocation")
     args = parser.parse_args()
 

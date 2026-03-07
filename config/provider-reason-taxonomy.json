@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "reason_codes": {
+    "ok": {
+      "class": "success",
+      "description": "Primary route succeeded without fallback.",
+      "recommended_action": "none"
+    },
+    "fallback_recovered": {
+      "class": "degraded_success",
+      "description": "Primary route failed but fallback route recovered the request.",
+      "recommended_action": "review primary provider health and latency."
+    },
+    "contract_violation": {
+      "class": "contract_failure",
+      "description": "Generated invocation payload violated the contract-required fields.",
+      "recommended_action": "fix invocation payload shaping before retry."
+    },
+    "all_providers_failed": {
+      "class": "execution_failure",
+      "description": "All attempted providers failed to return a successful response.",
+      "recommended_action": "inspect provider outage, timeout, or retry policy."
+    }
+  }
+}

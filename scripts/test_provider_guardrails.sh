@@ -13,11 +13,17 @@ python3 "$ROOT_DIR/scripts/litellm_gateway_smoke.py" \
   --scenario primary_success \
   --run-id "$RUN_ID" \
   --output-dir "$SMOKE_OUT"
+python3 "$ROOT_DIR/scripts/validate_provider_smoke_evidence.py" \
+  --report "$SMOKE_OUT/$RUN_ID-primary_success.json" \
+  --output "$TMP_DIR/provider-primary-success-validation.json"
 
 python3 "$ROOT_DIR/scripts/litellm_gateway_smoke.py" \
   --scenario primary_fail_fallback_success \
   --run-id "$RUN_ID" \
   --output-dir "$SMOKE_OUT"
+python3 "$ROOT_DIR/scripts/validate_provider_smoke_evidence.py" \
+  --report "$SMOKE_OUT/$RUN_ID-primary_fail_fallback_success.json" \
+  --output "$TMP_DIR/provider-fallback-validation.json"
 
 if python3 "$ROOT_DIR/scripts/litellm_gateway_smoke.py" \
   --scenario contract_violation \
@@ -26,6 +32,9 @@ if python3 "$ROOT_DIR/scripts/litellm_gateway_smoke.py" \
   echo "[FAIL] contract_violation scenario unexpectedly passed"
   exit 1
 fi
+python3 "$ROOT_DIR/scripts/validate_provider_smoke_evidence.py" \
+  --report "$SMOKE_OUT/$RUN_ID-contract_violation.json" \
+  --output "$TMP_DIR/provider-contract-violation-validation.json"
 
 python3 "$ROOT_DIR/scripts/validate_contract_pin.py" \
   --output "$TMP_DIR/contract-pin-report.json"
