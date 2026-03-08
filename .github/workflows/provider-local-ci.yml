@@ -3,10 +3,17 @@ name: Provider Gateway Local CI
 on:
   pull_request:
     paths:
+      - ".gitignore"
       - "README.md"
       - "docs/**"
       - "contracts/**"
       - "config/**"
+      - "package.json"
+      - "pnpm-lock.yaml"
+      - "pnpm-workspace.yaml"
+      - "tsconfig.base.json"
+      - "services/**"
+      - "adapters/**"
       - "scripts/**"
       - "runtime-artifacts/README.md"
       - ".github/workflows/provider-local-ci.yml"
