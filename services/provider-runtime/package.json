@@ -1,0 +1,6 @@
+{
+  "name": "@rather-not-work-on/provider-runtime",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module"
+}

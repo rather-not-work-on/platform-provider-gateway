@@ -24,6 +24,24 @@ Topology guide:
 - `docs/runbook/README.md`
 - `runtime-artifacts/README.md`
 
+## Workspace Bootstrap
+- `package.json`
+- `pnpm-workspace.yaml`
+- `tsconfig.base.json`
+- `services/provider-runtime/`
+
+The workspace bootstrap is intentionally thin in this step.
+
+- provider adapters land in the follow-up card
+- current Python scripts remain smoke and launcher tooling
+- local runtime outputs stay under `runtime-artifacts/`
+
+Current scaffolded runtime packages:
+- `services/provider-runtime`
+- `adapters/provider-codex`
+- `adapters/provider-claude`
+- `adapters/provider-local-llm`
+
 ## Smoke Test
 ```bash
 python3 -m pip install -r requirements-dev.txt

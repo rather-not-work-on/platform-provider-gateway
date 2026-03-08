@@ -1,0 +1,6 @@
+{
+  "name": "@rather-not-work-on/provider-local-llm",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module"
+}
