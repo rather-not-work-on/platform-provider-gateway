@@ -1,0 +1,12 @@
+{
+  "name": "@rather-not-work-on/platform-provider-gateway",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Workspace bootstrap for the provider gateway runtime skeleton.",
+  "scripts": {
+    "typecheck": "pnpm -r exec tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
