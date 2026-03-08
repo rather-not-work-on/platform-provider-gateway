@@ -2,6 +2,14 @@ name: Provider Gateway Local CI
 
 on:
   pull_request:
+    paths:
+      - "README.md"
+      - "docs/**"
+      - "contracts/**"
+      - "config/**"
+      - "scripts/**"
+      - "runtime-artifacts/README.md"
+      - ".github/workflows/provider-local-ci.yml"
   push:
     branches:
       - main
@@ -45,6 +53,9 @@ jobs:
           mkdir -p /tmp/provider
           python3 scripts/validate_contract_pin.py \
             --output /tmp/provider/contract-pin-report.json
+
+      - name: Verify topology README contract
+        run: bash scripts/test_module_readmes.sh
 
       - name: Seeded failure guard (contract violation + invalid pin)
         run: bash scripts/test_provider_guardrails.sh

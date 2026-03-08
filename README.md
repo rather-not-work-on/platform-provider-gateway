@@ -14,6 +14,15 @@ Local-first provider gateway baseline for UAP runtime.
 - `scripts/`: smoke validation scripts and local launcher
 - `docs/runbook/`: operational smoke/runbook guidance
 - `runtime-artifacts/`: default local smoke execution reports (gitignored)
+- `docs/`: repository topology and extension guidance
+
+Topology guide:
+- `docs/repo-topology.md`
+- `contracts/README.md`
+- `config/README.md`
+- `scripts/README.md`
+- `docs/runbook/README.md`
+- `runtime-artifacts/README.md`
 
 ## Smoke Test
 ```bash
@@ -54,6 +63,7 @@ Artifacts:
   - smoke evidence schema validation (`scripts/validate_provider_smoke_evidence.py`)
   - contract pin validation (`scripts/validate_contract_pin.py`)
   - seeded failure guard (`scripts/test_provider_guardrails.sh`)
+  - topology/module README regression (`scripts/test_module_readmes.sh`)
 
 ### Contract Pin Remediation
 When contract pin validation fails:
@@ -69,3 +79,5 @@ When contract pin validation fails:
 python3 scripts/validate_contract_pin.py
 bash scripts/test_provider_guardrails.sh
 ```
+
+Generated local runtime outputs stay under `runtime-artifacts/` and remain gitignored except for the tracked module README.
