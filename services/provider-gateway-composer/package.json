@@ -1,0 +1,14 @@
+{
+  "name": "@rather-not-work-on/provider-gateway-composer",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "dependencies": {
+    "@rather-not-work-on/provider-runtime": "workspace:*",
+    "@rather-not-work-on/provider-codex": "workspace:*",
+    "@rather-not-work-on/provider-claude": "workspace:*",
+    "@rather-not-work-on/provider-local-llm": "workspace:*"
+  },
+  "exports": "./src/index.ts",
+  "types": "./src/index.ts"
+}

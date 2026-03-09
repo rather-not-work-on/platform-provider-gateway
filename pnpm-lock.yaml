@@ -30,6 +30,21 @@ importers:
         specifier: workspace:*
         version: link:../../services/provider-runtime
 
+  services/provider-gateway-composer:
+    dependencies:
+      '@rather-not-work-on/provider-claude':
+        specifier: workspace:*
+        version: link:../../adapters/provider-claude
+      '@rather-not-work-on/provider-codex':
+        specifier: workspace:*
+        version: link:../../adapters/provider-codex
+      '@rather-not-work-on/provider-local-llm':
+        specifier: workspace:*
+        version: link:../../adapters/provider-local-llm
+      '@rather-not-work-on/provider-runtime':
+        specifier: workspace:*
+        version: link:../provider-runtime
+
   services/provider-runtime: {}
 
 packages:
