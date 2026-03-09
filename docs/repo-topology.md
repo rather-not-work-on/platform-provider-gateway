@@ -31,3 +31,4 @@ Workspace root descriptors may be added before adapter packages exist. The first
 - Planning/orchestration policy belongs upstream in `platform-planningops`.
 - `services/provider-runtime` owns the driver contract and adapters only implement it.
 - `services/provider-runtime` also owns the registry baseline that resolves provider keys to drivers.
+- `services/provider-runtime` owns the routing policy baseline that chooses the effective provider key before invoking a driver.
