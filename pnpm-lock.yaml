@@ -12,11 +12,23 @@ importers:
         specifier: ^5.0.0
         version: 5.9.3
 
-  adapters/provider-claude: {}
+  adapters/provider-claude:
+    dependencies:
+      '@rather-not-work-on/provider-runtime':
+        specifier: workspace:*
+        version: link:../../services/provider-runtime
 
-  adapters/provider-codex: {}
+  adapters/provider-codex:
+    dependencies:
+      '@rather-not-work-on/provider-runtime':
+        specifier: workspace:*
+        version: link:../../services/provider-runtime
 
-  adapters/provider-local-llm: {}
+  adapters/provider-local-llm:
+    dependencies:
+      '@rather-not-work-on/provider-runtime':
+        specifier: workspace:*
+        version: link:../../services/provider-runtime
 
   services/provider-runtime: {}
 
