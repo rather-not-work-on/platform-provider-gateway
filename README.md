@@ -97,8 +97,14 @@ When contract pin validation fails:
 3. Re-run:
 
 ```bash
-python3 scripts/validate_contract_pin.py
-bash scripts/test_provider_guardrails.sh
+   python3 scripts/validate_contract_pin.py
+   bash scripts/test_provider_guardrails.sh
 ```
+
+## PR Hygiene
+- template: `.github/pull_request_template.md`
+- review gate: `.github/workflows/pr-review-gate.yml`
+- external repo PRs must include a repo-qualified planningops issue ref
+- example: `Closes rather-not-work-on/platform-planningops#208`
 
 Generated local runtime outputs stay under `runtime-artifacts/` and remain gitignored except for the tracked module README.
