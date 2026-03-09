@@ -5,6 +5,7 @@ Host repeatable local smoke, validation, and launcher tooling.
 
 ## Contents
 - gateway smoke scenarios
+- launcher-backed live smoke wrapper
 - evidence validators
 - contract pin validation
 - stack launcher helpers

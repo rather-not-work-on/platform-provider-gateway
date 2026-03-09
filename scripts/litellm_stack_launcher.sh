@@ -5,6 +5,7 @@ MODE="dry-run"
 RUNTIME_PROFILE_FILE="../platform-planningops/planningops/config/runtime-profiles.json"
 PROFILE_SET="local,oracle_cloud"
 RUN_ID="launcher-$(date -u +%Y%m%dT%H%M%SZ)"
+PYTHON_BIN="${PYTHON_BIN:-python3}"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -35,7 +36,7 @@ mkdir -p runtime-artifacts/launcher
 
 if [[ "$MODE" == "dry-run" ]]; then
   echo "[launcher] dry-run mode: validating runtime profiles only"
-  python3 scripts/litellm_profile_drill.py \
+  "$PYTHON_BIN" scripts/litellm_profile_drill.py \
     --runtime-profile-file "$RUNTIME_PROFILE_FILE" \
     --profiles "$PROFILE_SET" \
     --run-id "$RUN_ID"
@@ -49,7 +50,7 @@ if [[ "$MODE" == "start" ]]; then
   else
     echo "[launcher] compose file not found (ops/litellm.compose.yaml), running profile drill fallback"
   fi
-  python3 scripts/litellm_profile_drill.py \
+  "$PYTHON_BIN" scripts/litellm_profile_drill.py \
     --runtime-profile-file "$RUNTIME_PROFILE_FILE" \
     --profiles "$PROFILE_SET" \
     --run-id "$RUN_ID"
