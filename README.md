@@ -35,6 +35,7 @@ The workspace bootstrap is intentionally thin in this step.
 - current Python scripts remain smoke and launcher tooling
 - local runtime outputs stay under `runtime-artifacts/`
 - provider adapters now implement the runtime-owned driver contract
+- provider-runtime now owns the registry baseline that selects registered drivers
 
 Current scaffolded runtime packages:
 - `services/provider-runtime`

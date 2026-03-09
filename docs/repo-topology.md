@@ -30,3 +30,4 @@ Workspace root descriptors may be added before adapter packages exist. The first
 - Shared contract shape comes from `platform-contracts`.
 - Planning/orchestration policy belongs upstream in `platform-planningops`.
 - `services/provider-runtime` owns the driver contract and adapters only implement it.
+- `services/provider-runtime` also owns the registry baseline that resolves provider keys to drivers.
