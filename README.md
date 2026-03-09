@@ -32,9 +32,9 @@ Topology guide:
 
 The workspace bootstrap is intentionally thin in this step.
 
-- provider adapters land in the follow-up card
 - current Python scripts remain smoke and launcher tooling
 - local runtime outputs stay under `runtime-artifacts/`
+- provider adapters now implement the runtime-owned driver contract
 
 Current scaffolded runtime packages:
 - `services/provider-runtime`
