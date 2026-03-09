@@ -1,4 +1,5 @@
 import type { ProviderDriverRegistry } from "./provider_driver.js";
+import { normalizeProviderOutcome } from "./outcome_policy.js";
 import type { ProviderInvocationRequest, ProviderInvocationResult } from "./provider_port.js";
 import { resolveProviderKey } from "./routing_policy.js";
 
@@ -19,21 +20,18 @@ export class ProviderRuntime {
     });
 
     if (!providerKey) {
-      return {
+      return normalizeProviderOutcome({
         reasonCode: "missing_provider",
-      };
+      });
     }
 
     const driver = this.dependencies.registry?.find(providerKey);
     if (!driver) {
-      return {
+      return normalizeProviderOutcome({
         reasonCode: "provider_not_registered",
-      };
+      });
     }
 
-    const result = driver.invoke(request);
-    return {
-      reasonCode: result.reasonCode,
-    };
+    return normalizeProviderOutcome(driver.invoke(request));
   }
 }
