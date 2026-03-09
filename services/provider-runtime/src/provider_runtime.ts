@@ -1,21 +1,30 @@
 import type { ProviderDriverRegistry } from "./provider_driver.js";
 import type { ProviderInvocationRequest, ProviderInvocationResult } from "./provider_port.js";
+import { resolveProviderKey } from "./routing_policy.js";
 
 export interface ProviderRuntimeDependencies {
   registry?: ProviderDriverRegistry;
+  defaultProviderKey?: string;
 }
 
 export class ProviderRuntime {
   constructor(private readonly dependencies: ProviderRuntimeDependencies = {}) {}
 
   invoke(request: ProviderInvocationRequest): ProviderInvocationResult {
-    if (!request.providerKey) {
+    const registeredProviderKeys = this.dependencies.registry?.all().map((driver) => driver.providerKey()) ?? [];
+    const providerKey = resolveProviderKey({
+      requestedProviderKey: request.providerKey,
+      defaultProviderKey: this.dependencies.defaultProviderKey,
+      registeredProviderKeys,
+    });
+
+    if (!providerKey) {
       return {
         reasonCode: "missing_provider",
       };
     }
 
-    const driver = this.dependencies.registry?.find(request.providerKey);
+    const driver = this.dependencies.registry?.find(providerKey);
     if (!driver) {
       return {
         reasonCode: "provider_not_registered",
