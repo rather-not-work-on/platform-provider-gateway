@@ -7,6 +7,7 @@ Host repeatable local smoke, validation, and launcher tooling.
 - gateway smoke scenarios
 - launcher-backed live smoke wrapper
 - evidence validators
+- jsonschema compatibility fallback
 - reason taxonomy map validator
 - contract pin validation
 - stack launcher helpers

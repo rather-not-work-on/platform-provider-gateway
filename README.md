@@ -60,6 +60,7 @@ bash scripts/test_provider_guardrails.sh
 Notes:
 - `contract_violation` scenario is expected to fail and verifies guard behavior.
 - per-task routing overrides are managed upstream in planningops runtime profiles.
+- schema validation prefers `jsonschema` when installed and falls back to `scripts/jsonschema_compat.py` in offline environments.
 
 ## Local LiteLLM Launcher and Profile Drill
 ```bash
