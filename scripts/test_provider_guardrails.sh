@@ -36,6 +36,9 @@ python3 "$ROOT_DIR/scripts/validate_provider_smoke_evidence.py" \
   --report "$SMOKE_OUT/$RUN_ID-contract_violation.json" \
   --output "$TMP_DIR/provider-contract-violation-validation.json"
 
+python3 "$ROOT_DIR/scripts/validate_reason_taxonomy_map.py" \
+  --output "$TMP_DIR/provider-reason-taxonomy-map-report.json"
+
 python3 "$ROOT_DIR/scripts/validate_contract_pin.py" \
   --output "$TMP_DIR/contract-pin-report.json"
 

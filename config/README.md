@@ -6,6 +6,7 @@ Store static provider-gateway configuration and examples.
 ## Contents
 - contract pin metadata
 - provider reason taxonomy
+- provider reason taxonomy map
 - routing examples
 
 ## Rules

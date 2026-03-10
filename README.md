@@ -52,6 +52,7 @@ python3 scripts/litellm_gateway_smoke.py --scenario primary_success
 python3 scripts/litellm_gateway_smoke.py --scenario primary_fail_fallback_success
 python3 scripts/litellm_gateway_smoke.py --scenario contract_violation
 python3 scripts/validate_provider_smoke_evidence.py --report runtime-artifacts/smoke/<run_id>-primary_success.json
+python3 scripts/validate_reason_taxonomy_map.py
 python3 scripts/validate_contract_pin.py
 bash scripts/test_provider_guardrails.sh
 ```
@@ -82,6 +83,7 @@ Artifacts:
 - checks:
   - provider smoke (`primary_success`, `primary_fail_fallback_success`)
   - smoke evidence schema validation (`scripts/validate_provider_smoke_evidence.py`)
+  - provider reason taxonomy map validation (`scripts/validate_reason_taxonomy_map.py`)
   - contract pin validation (`scripts/validate_contract_pin.py`)
   - seeded failure guard (`scripts/test_provider_guardrails.sh`)
   - topology/module README regression (`scripts/test_module_readmes.sh`)

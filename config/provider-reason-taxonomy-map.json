@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "taxonomy_source": "config/provider-reason-taxonomy.json",
+  "taxonomy_version": 1,
+  "reason_code_map": {
+    "ok": {
+      "severity": "info",
+      "retryable": false,
+      "operator_action": "none"
+    },
+    "fallback_recovered": {
+      "severity": "warn",
+      "retryable": true,
+      "operator_action": "review_primary_provider_health"
+    },
+    "contract_violation": {
+      "severity": "error",
+      "retryable": false,
+      "operator_action": "fix_request_shape"
+    },
+    "all_providers_failed": {
+      "severity": "error",
+      "retryable": true,
+      "operator_action": "check_provider_outage_or_timeout"
+    }
+  }
+}
